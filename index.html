@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Responsive Weather Dashboard using OpenWeather API"
+    >
+
+    <title>Weather Dashboard | Pavan Kumar</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="app-header">
+    <div class="container header__content">
+        <div>
+            <p class="header__label">WEEK 6 PROJECT</p>
+            <h1 class="header__title">Weather Dashboard</h1>
+        </div>
+
+        <button
+            id="themeToggle"
+            class="theme-button"
+            type="button"
+            aria-label="Toggle dark mode"
+        >
+            🌙
+        </button>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Search -->
+    <section class="search-section" aria-labelledby="search-title">
+
+        <h2 id="search-title">Search Weather</h2>
+
+        <form id="searchForm" class="search-form">
+
+            <label for="cityInput" class="sr-only">
+                Enter city name
+            </label>
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name e.g. Hyderabad"
+                autocomplete="off"
+                required
+            >
+
+            <select id="unitSelect" aria-label="Temperature unit">
+                <option value="metric">°C Celsius</option>
+                <option value="imperial">°F Fahrenheit</option>
+            </select>
+
+            <button type="submit" class="button button--primary">
+                Search
+            </button>
+
+        </form>
+
+        <div class="quick-cities">
+            <button type="button" class="city-button" data-city="Hyderabad">
+                Hyderabad
+            </button>
+
+            <button type="button" class="city-button" data-city="Mumbai">
+                Mumbai
+            </button>
+
+            <button type="button" class="city-button" data-city="Delhi">
+                Delhi
+            </button>
+
+            <button type="button" class="city-button" data-city="London">
+                London
+            </button>
+        </div>
+
+    </section>
+
+    <!-- Status -->
+    <div
+        id="statusMessage"
+        class="status-message"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Loading weather data...</p>
+    </div>
+
+    <!-- Current Weather -->
+    <section
+        id="weatherSection"
+        class="weather-section hidden"
+        aria-labelledby="currentWeatherTitle"
+    >
+
+        <div class="section-header">
+            <div>
+                <p class="section-label">CURRENT CONDITIONS</p>
+                <h2 id="currentWeatherTitle">Current Weather</h2>
+            </div>
+
+            <p id="lastUpdated" class="last-updated"></p>
+        </div>
+
+        <div class="current-weather">
+
+            <div class="current-weather__main">
+
+                <div>
+                    <h3 id="cityName">Hyderabad</h3>
+                    <p id="weatherDescription">Clear sky</p>
+                </div>
+
+                <img
+                    id="weatherIcon"
+                    src=""
+                    alt="Weather condition icon"
+                    class="weather-icon"
+                >
+
+                <div class="temperature">
+                    <span id="temperature">--</span>
+                    <span id="temperatureUnit">°C</span>
+                </div>
+
+            </div>
+
+            <div class="weather-details">
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">🌡️</span>
+                    <div>
+                        <span>Feels Like</span>
+                        <strong id="feelsLike">--</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">💧</span>
+                    <div>
+                        <span>Humidity</span>
+                        <strong id="humidity">--%</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">💨</span>
+                    <div>
+                        <span>Wind</span>
+                        <strong id="windSpeed">--</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">☁️</span>
+                    <div>
+                        <span>Cloudiness</span>
+                        <strong id="cloudiness">--%</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">🔽</span>
+                    <div>
+                        <span>Pressure</span>
+                        <strong id="pressure">-- hPa</strong>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <span class="detail-card__icon">👁️</span>
+                    <div>
+                        <span>Visibility</span>
+                        <strong id="visibility">-- km</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Forecast -->
+    <section
+        id="forecastSection"
+        class="forecast-section hidden"
+        aria-labelledby="forecastTitle"
+    >
+
+        <div class="section-header">
+            <div>
+                <p class="section-label">UPCOMING DAYS</p>
+                <h2 id="forecastTitle">5-Day Forecast</h2>
+            </div>
+        </div>
+
+        <div id="forecastGrid" class="forecast-grid"></div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>
+        © 2026 Pavan Kumar Katkuri | Built with HTML, CSS, JavaScript & OpenWeather API
+    </p>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
